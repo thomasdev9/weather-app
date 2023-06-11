@@ -1,5 +1,5 @@
-import { Fragment } from "react";
-import GlobalStyles from "./global-styles";
+import { Fragment } from 'react';
+import GlobalStyles from './global-styles';
 
 function App() {
   return (
