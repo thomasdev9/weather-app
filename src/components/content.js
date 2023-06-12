@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Header from './header';
+import SearchBar from './search-bar';
 
 const Wrapper = styled.div`
   width: 100%;
@@ -36,6 +37,7 @@ function Content() {
     <Wrapper>
       <Container>
         <Header />
+        <SearchBar />
       </Container>
     </Wrapper>
   );
