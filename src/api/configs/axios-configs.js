@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export const api = axios.create({
   widthCredentials: true,
-  baseUrl: 'https://api.openweathermap.org/data/2.5',
+  baseURL: 'https://api.openweathermap.org/data/2.5',
 });
 
 const errorHandler = (error) => {
