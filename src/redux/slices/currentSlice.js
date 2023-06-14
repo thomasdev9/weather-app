@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { getCurrent } from '../../api/weather-api';
+import { WeatherAPI } from '../../api/weather-api';
 
 const initialState = {
   data: {},
@@ -9,7 +9,7 @@ const initialState = {
 };
 
 export const fetchCurrent = createAsyncThunk('current/fetchCurrent', async ({ lat, lon }) => {
-  const response = await getCurrent({ lat, lon });
+  const response = await WeatherAPI.getCurrent({ lat, lon });
   return response;
 });
 

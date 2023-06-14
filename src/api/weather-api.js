@@ -1,5 +1,5 @@
 import { api } from './configs/axios-configs';
-import { defineCandelApiObject } from './configs/axios-utils';
+import { defineCancelApiObject } from './configs/axios-utils';
 
 const API_KEY = 'd0a72cc67cb5e71de9ddf87aeca1b387';
 
@@ -33,4 +33,4 @@ export const WeatherAPI = {
   },
 };
 
-const cancelApiObject = defineCandelApiObject(WeatherAPI);
+const cancelApiObject = defineCancelApiObject(WeatherAPI);
