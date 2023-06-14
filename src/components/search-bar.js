@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import { FaSearch } from 'react-icons/fa';
 import ReactSearchBox from 'react-search-box';
 import { suggestions } from '../shared/data/cities';
+import { coordinates } from '../shared/data/coordinates';
+import { fetchCurrent } from '../redux/slices/currentSlice';
+import { fetchForecast } from '../redux/slices/forecastSlice';
 
 const Conntainer = styled.div`
   width: 100%;
@@ -39,9 +43,15 @@ const ErrorMessage = styled.h3`
 function SearchBar() {
   const [value, setValue] = useState('');
   const [selectedValue, setSelectedValue] = useState('');
+  const dispatch = useDispatch();
 
   const handleSelect = (record) => {
-    setSelectedValue(record?.item?.value);
+    const selectedValue = record?.item?.value;
+    const selectedKey = record?.item?.key;
+    const { lat, lon } = coordinates[selectedKey];
+    setSelectedValue(selectedValue);
+    dispatch(fetchCurrent({ lat, lon }));
+    dispatch(fetchForecast({ lat, lon }));
   };
 
   return (

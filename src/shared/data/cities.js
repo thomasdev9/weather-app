@@ -28,10 +28,6 @@ export const suggestions = [
     value: 'Teesside',
   },
   {
-    key: 'sheffield',
-    value: 'Sheffield',
-  },
-  {
     key: 'bristol',
     value: 'Bristol',
   },

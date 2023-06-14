@@ -8,7 +8,7 @@ export const WeatherAPI = {
     const response = await api.request({
       url: '/weather/',
       method: 'GET',
-      data: {
+      params: {
         lat: lat,
         lon: lon,
         appid: API_KEY,
@@ -17,15 +17,14 @@ export const WeatherAPI = {
     });
     return response.data;
   },
-  getForecast: async function ({ lat, lon, cnt, cancel = false }) {
+  getForecast: async function ({ lat, lon, cancel = false }) {
     const response = await api.request({
-      url: '/forecast/daily/',
+      url: '/forecast/',
       method: 'GET',
-      data: {
+      params: {
         lat: lat,
         lon: lon,
         appid: API_KEY,
-        cnt: cnt,
       },
       signal: cancel ? cancelApiObject[this.getForecast.name].handleRequestCancellation().signal : undefined,
     });
