@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Header from './header';
 import SearchBar from './search-bar';
+import { useSelector } from 'react-redux';
 
 const Wrapper = styled.div`
   width: 100%;
@@ -22,7 +23,7 @@ const Container = styled.div`
   height: auto;
   padding: 50px 0px;
 
-  @media only screen and (max-width: 800px) {
+  @media only screen and (max-width: 850px) {
     width: 80%;
   }
 
@@ -33,6 +34,9 @@ const Container = styled.div`
 `;
 
 function Content() {
+  const currentData = useSelector((state) => state?.current?.data);
+  const forecastData = useSelector((state) => state?.forecast?.data);
+  console.log(currentData, forecastData);
   return (
     <Wrapper>
       <Container>
