@@ -56,6 +56,7 @@ const TempImg = styled.img`
 const DescHeader = styled.h3`
   color: rgb(128, 128, 128);
   font-weight: 600;
+  text-transform: capitalize;
 `;
 
 const InfoWrapper = styled.div`
@@ -108,12 +109,12 @@ const information = [
 function CreateCurrentWeather({ city, iconId, tempValue, desc, feelsLike, humidity, wind }) {
   const getInfo = (index) => {
     switch (index) {
+      case 0:
+        return `${feelsLike}°`;
       case 1:
-        return feelsLike;
+        return `${humidity}%`;
       case 2:
-        return humidity;
-      case 3:
-        return wind;
+        return `${wind} m/s`;
     }
   };
 
@@ -123,7 +124,7 @@ function CreateCurrentWeather({ city, iconId, tempValue, desc, feelsLike, humidi
         <CityHeader>{city}</CityHeader>
         <TempWrapper>
           <TempImg src={getIcon({ id: iconId })} />
-          <TempValue>{tempValue}</TempValue>
+          <TempValue>{tempValue}°</TempValue>
         </TempWrapper>
         <DescHeader>{desc}</DescHeader>
       </ContentColumn>

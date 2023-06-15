@@ -23,34 +23,8 @@ const HeaderWrapper = styled.div`
 
 const Header = styled.h3`
   color: rgb(128, 128, 128);
-  font-weight: 600;
+  font-weight: 500;
 `;
-
-// const ContentWrapper = styled.div`
-//   display: grid;
-//   grid-template-columns: 1fr 1fr;
-//   width: 100%;
-//   padding-bottom: 25px;
-
-//   ${(props) =>
-//     props.columns === 7 &&
-//     css`
-//       grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-//     `}
-// `;
-
-// const ContentColumn = styled.div`
-//   display: flex;
-//   flex-direction: column;
-//   align-items: flex-start;
-//   justify-content: center;
-
-//   ${(props) =>
-//     props.align === 'center' &&
-//     css`
-//       align-items: center;
-//     `}
-// `;
 
 function Card({ title, children }) {
   return (
@@ -59,13 +33,6 @@ function Card({ title, children }) {
         <Header>{title}</Header>
       </HeaderWrapper>
       {children}
-      {/* <ContentWrapper columns={columns}>
-        {columnsContent?.map((column, index) => (
-          <ContentColumn align={align} key={index}>
-            {column}
-          </ContentColumn>
-        ))}
-      </ContentWrapper> */}
     </Container>
   );
 }
