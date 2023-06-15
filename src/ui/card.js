@@ -1,12 +1,12 @@
 import React from 'react';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 const Container = styled.div`
   width: 100%;
   height: auto;
   border: none;
   border-radius: 15px;
-  padding: 20px;
+  padding: 20px 40px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -26,45 +26,46 @@ const Header = styled.h3`
   font-weight: 600;
 `;
 
-const ContentWrapper = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  width: 100%;
-  padding-bottom: 25px;
+// const ContentWrapper = styled.div`
+//   display: grid;
+//   grid-template-columns: 1fr 1fr;
+//   width: 100%;
+//   padding-bottom: 25px;
 
-  ${(props) =>
-    props.columns === 7 &&
-    css`
-      grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-    `}
-`;
+//   ${(props) =>
+//     props.columns === 7 &&
+//     css`
+//       grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+//     `}
+// `;
 
-const ContentColumn = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
+// const ContentColumn = styled.div`
+//   display: flex;
+//   flex-direction: column;
+//   align-items: flex-start;
+//   justify-content: center;
 
-  ${(props) =>
-    props.align === 'center' &&
-    css`
-      align-items: center;
-    `}
-`;
+//   ${(props) =>
+//     props.align === 'center' &&
+//     css`
+//       align-items: center;
+//     `}
+// `;
 
-function Card({ columns, align, columnsContent, title }) {
+function Card({ title, children }) {
   return (
     <Container>
       <HeaderWrapper>
         <Header>{title}</Header>
       </HeaderWrapper>
-      <ContentWrapper columns={columns}>
+      {children}
+      {/* <ContentWrapper columns={columns}>
         {columnsContent?.map((column, index) => (
           <ContentColumn align={align} key={index}>
             {column}
           </ContentColumn>
         ))}
-      </ContentWrapper>
+      </ContentWrapper> */}
     </Container>
   );
 }
