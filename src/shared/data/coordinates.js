@@ -75,4 +75,8 @@ export const coordinates = {
     lat: 53.7677,
     lon: -0.3358,
   },
+  preston: {
+    lat: 53.7657,
+    lon: -2.6923,
+  },
 };

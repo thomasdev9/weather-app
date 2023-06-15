@@ -2,7 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 import Header from './header';
 import SearchBar from './search-bar';
+import Card from '../ui/card';
+import CreateCurrentWeather from '../features/create-current-weather';
 import { useSelector } from 'react-redux';
+import { isEmpty } from 'lodash';
+import { getCurrentData } from '../shared/utils';
 
 const Wrapper = styled.div`
   width: 100%;
@@ -34,14 +38,23 @@ const Container = styled.div`
 `;
 
 function Content() {
-  const currentData = useSelector((state) => state?.current?.data);
-  const forecastData = useSelector((state) => state?.forecast?.data);
-  console.log(currentData, forecastData);
+  const current = useSelector((state) => state?.current?.data);
+  const forecast = useSelector((state) => state?.forecast?.data);
+  const currentLoading = useSelector((state) => state?.current?.loading);
+  const currentData = !isEmpty(current) ? getCurrentData(current) : {};
+
+  console.log(forecast);
+
   return (
     <Wrapper>
       <Container>
         <Header />
         <SearchBar />
+        {!currentLoading && !isEmpty(current) && (
+          <Card title="Current Weather">
+            <CreateCurrentWeather {...currentData} />
+          </Card>
+        )}
       </Container>
     </Wrapper>
   );

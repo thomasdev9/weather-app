@@ -43,3 +43,24 @@ const icons = {
 export const getIcon = ({ id }) => {
   return icons[id];
 };
+
+export const getCurrentData = (data) => {
+  const city = data?.name;
+  const feelsLike = Math.round(data?.main?.feels_like);
+  const humidity = data?.main?.humidity;
+  const wind = data?.wind?.speed;
+  const tempValue = Math.round(data?.main?.temp);
+  const weather = data?.weather[0];
+  const desc = weather?.description;
+  const iconId = weather?.icon;
+
+  return {
+    city: city,
+    feelsLike: feelsLike,
+    humidity: humidity,
+    wind: wind,
+    tempValue: tempValue,
+    desc: desc,
+    iconId: iconId,
+  };
+};

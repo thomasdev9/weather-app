@@ -68,8 +68,8 @@ export const suggestions = [
     value: 'Brighton',
   },
   {
-    key: 'Plymouth',
-    value: 'plymouth',
+    key: 'plymouth',
+    value: 'Plymouth',
   },
   {
     key: 'hull',
