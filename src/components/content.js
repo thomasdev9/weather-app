@@ -4,13 +4,15 @@ import Header from './header';
 import SearchBar from './search-bar';
 import Card from '../ui/card';
 import CreateCurrentWeather from '../features/create-current-weather';
+import CreateForecastWeather from '../features/create-forecast-weather';
 import { useSelector } from 'react-redux';
 import { isEmpty } from 'lodash';
 import { getCurrentData } from '../shared/utils';
 
 const Wrapper = styled.div`
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
+  height: auto;
   display: flex;
   flex-direction: row;
   align-items: flex-start;
@@ -37,6 +39,14 @@ const Container = styled.div`
   }
 `;
 
+const CardWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+`;
+
 function Content() {
   const current = useSelector((state) => state?.current?.data);
   const forecast = useSelector((state) => state?.forecast?.data);
@@ -51,9 +61,14 @@ function Content() {
         <Header />
         <SearchBar />
         {!currentLoading && !isEmpty(current) && (
-          <Card title="Current Weather">
-            <CreateCurrentWeather {...currentData} />
-          </Card>
+          <CardWrapper>
+            <Card title="Current Weather">
+              <CreateCurrentWeather {...currentData} />
+            </Card>
+            <Card title="Forecast Weather">
+              <CreateForecastWeather />
+            </Card>
+          </CardWrapper>
         )}
       </Container>
     </Wrapper>

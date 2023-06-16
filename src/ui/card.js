@@ -12,6 +12,7 @@ const Container = styled.div`
   align-items: center;
   justify-content: flex-start;
   background-color: rgb(255, 255, 255);
+  margin-bottom: 25px;
 `;
 
 const HeaderWrapper = styled.div`
