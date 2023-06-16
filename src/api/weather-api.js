@@ -26,7 +26,7 @@ export const WeatherAPI = {
         lat: lat,
         lon: lon,
         appid: API_KEY,
-        units: 'metrics',
+        units: 'metric',
       },
       signal: cancel ? cancelApiObject[this.getForecast.name].handleRequestCancellation().signal : undefined,
     });

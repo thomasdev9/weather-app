@@ -40,6 +40,8 @@ const icons = {
   unknown: IconUnknown,
 };
 
+const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+
 export const getIcon = ({ id }) => {
   return icons[id];
 };
@@ -63,4 +65,25 @@ export const getCurrentData = (data) => {
     desc: desc,
     iconId: iconId,
   };
+};
+
+export const getForecatData = (data) => {
+  let list = data?.list;
+  list = [list[0], list[8], list[16], list[24], list[32]];
+  list = list?.map((item) => {
+    const date = new Date(item?.dt * 1000);
+    const day = days[date.getUTCDay()];
+    const weather = item?.weather[0];
+    const iconId = weather?.icon;
+    const main = weather?.main;
+    const tempValue = Math.round(item?.main?.temp);
+
+    return {
+      day: day,
+      iconId: iconId,
+      main: main,
+      tempValue: tempValue,
+    };
+  });
+  return list;
 };
