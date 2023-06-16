@@ -5,6 +5,7 @@ import SearchBar from './search-bar';
 import Card from '../ui/card';
 import CreateCurrentWeather from '../features/create-current-weather';
 import CreateForecastWeather from '../features/create-forecast-weather';
+import ClipLoader from 'react-spinners/ClipLoader';
 import { useSelector } from 'react-redux';
 import { isEmpty } from 'lodash';
 import { getCurrentData, getForecatData } from '../shared/utils';
@@ -47,11 +48,16 @@ const CardWrapper = styled.div`
   width: 100%;
 `;
 
+const override = {
+  marginTop: '50px',
+  display: 'block',
+};
+
 function Content() {
   const current = useSelector((state) => state?.current?.data);
   const forecast = useSelector((state) => state?.forecast?.data);
   const currentLoading = useSelector((state) => state?.current?.loading);
-  const forecastLoaing = useSelector((state) => state?.forecast?.loading);
+  const forecastLoading = useSelector((state) => state?.forecast?.loading);
   const currentData = !isEmpty(current) ? getCurrentData(current) : {};
   const forecastData = !isEmpty(forecast) ? getForecatData(forecast) : [];
 
@@ -60,7 +66,7 @@ function Content() {
       <Container>
         <Header />
         <SearchBar />
-        {!currentLoading && !forecastLoaing && !isEmpty(current) && !isEmpty(forecast) && (
+        {!currentLoading && !forecastLoading && !isEmpty(current) && !isEmpty(forecast) && (
           <CardWrapper>
             <Card title="Current Weather">
               <CreateCurrentWeather {...currentData} />
@@ -70,6 +76,14 @@ function Content() {
             </Card>
           </CardWrapper>
         )}
+        <ClipLoader
+          color="rgb(255, 255, 255)"
+          loading={currentLoading || forecastLoading}
+          size={100}
+          aria-label="Loading Spinner"
+          data-testid="loader"
+          cssOverride={override}
+        />
       </Container>
     </Wrapper>
   );
