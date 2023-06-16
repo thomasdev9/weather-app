@@ -7,7 +7,7 @@ import CreateCurrentWeather from '../features/create-current-weather';
 import CreateForecastWeather from '../features/create-forecast-weather';
 import { useSelector } from 'react-redux';
 import { isEmpty } from 'lodash';
-import { getCurrentData } from '../shared/utils';
+import { getCurrentData, getForecatData } from '../shared/utils';
 
 const Wrapper = styled.div`
   width: 100%;
@@ -51,22 +51,22 @@ function Content() {
   const current = useSelector((state) => state?.current?.data);
   const forecast = useSelector((state) => state?.forecast?.data);
   const currentLoading = useSelector((state) => state?.current?.loading);
+  const forecastLoaing = useSelector((state) => state?.forecast?.loading);
   const currentData = !isEmpty(current) ? getCurrentData(current) : {};
-
-  console.log(forecast);
+  const forecastData = !isEmpty(forecast) ? getForecatData(forecast) : [];
 
   return (
     <Wrapper>
       <Container>
         <Header />
         <SearchBar />
-        {!currentLoading && !isEmpty(current) && (
+        {!currentLoading && !forecastLoaing && !isEmpty(current) && !isEmpty(forecast) && (
           <CardWrapper>
             <Card title="Current Weather">
               <CreateCurrentWeather {...currentData} />
             </Card>
             <Card title="Forecast Weather">
-              <CreateForecastWeather />
+              <CreateForecastWeather list={forecastData} />
             </Card>
           </CardWrapper>
         )}

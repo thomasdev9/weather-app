@@ -7,6 +7,7 @@ const ContentWrapper = styled.div`
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   width: 100%;
   overflow-x: auto;
+  padding-bottom: 25px;
 `;
 
 const ContentColumn = styled.div`
@@ -41,48 +42,15 @@ const TempValue = styled.h3`
   font-weight: 500;
 `;
 
-const columns = [
-  {
-    day: 'Mon',
-    iconId: '03d',
-    desc: 'Clear Sky',
-    tempValue: '22',
-  },
-  {
-    day: 'Tue',
-    iconId: '13d',
-    desc: 'Clouds',
-    tempValue: '25',
-  },
-  {
-    day: 'Wed',
-    iconId: '04d',
-    desc: 'Sun',
-    tempValue: '32',
-  },
-  {
-    day: 'Thu',
-    iconId: '02d',
-    desc: 'Sun',
-    tempValue: '20',
-  },
-  {
-    day: 'Fri',
-    iconId: '01d',
-    desc: 'Sky',
-    tempValue: '20',
-  },
-];
-
-function CreateForecastWeather() {
+function CreateForecastWeather({ list }) {
   return (
     <ContentWrapper>
-      {columns?.map((column, index) => (
+      {list?.map((item, index) => (
         <ContentColumn key={index}>
-          <DayHeader>{column?.day}</DayHeader>
-          <TempImg src={getIcon({ id: column?.iconId })} />
-          <MainWeather>{column.desc}</MainWeather>
-          <TempValue>{column.tempValue}</TempValue>
+          <DayHeader>{item?.day}</DayHeader>
+          <TempImg src={getIcon({ id: item?.iconId })} />
+          <MainWeather>{item.main}</MainWeather>
+          <TempValue>{item.tempValue}°</TempValue>
         </ContentColumn>
       ))}
     </ContentWrapper>
